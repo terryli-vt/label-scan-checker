@@ -1,0 +1,21 @@
+/* src/styles/LanguageSwitcher.css */
+
+.language-switcher {
+  display: flex;
+  gap: 1em;
+  margin-right: 3em;
+}
+
+.language-button {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.language-button.active {
+  font-weight: bold;
+}

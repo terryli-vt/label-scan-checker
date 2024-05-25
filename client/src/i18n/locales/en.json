@@ -1,0 +1,32 @@
+{
+  "result": "Scanned Result",
+  "target": "Target",
+  "matching_index": "Matching Index",
+  "match": "Match",
+  "unmatch": "Unmatch",
+  "unscannable": "Unscannable",
+  "msg_continue": "Please continue scanning.",
+  "msg_rescan": "Please report mismatch or re-scan.",
+  "finish_scan": "Finish Scanning",
+  "report_unmatch": "Report Unmatch",
+  "rescan": "Re-scan",
+
+  "scan_finished": "Scan Finished.",
+  "go_to_home": "Go to Home Page",
+
+  "label_scan_checker": "Label Scan Checker",
+  "products": "Products",
+  "scan": "Scan",
+  "history": "History",
+  "card_products": "View/Update products.",
+  "card_scan": "Start your scan.",
+  "card_history": "Access scanning history.",
+
+  "part_name": "Part Name",
+  "customer_number": "Customer Number",
+  "part_number": "Part Number",
+  "customer": "Customer",
+  "action": "Action",
+  "search": "Search Customer Number...",
+  "date": "Date"
+}

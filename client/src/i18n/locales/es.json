@@ -1,0 +1,32 @@
+{
+  "result": "Resultado escaneado",
+  "target": "Objetivo",
+  "matching_index": "índice",
+  "match": "Emparejado",
+  "unmatch": "Desemparejar",
+  "unscannable": "No se puede escanear",
+  "msg_continue": "Continúe escaneando.",
+  "msg_rescan": "Informe la no coincidencia o vuelva a escanear.",
+  "finish_scan": "Finalizar el escaneo",
+  "report_unmatch": "Informar no coincidente",
+  "rescan": "Rehacer escaneo",
+
+  "scan_finished": "Escaneo terminado.",
+  "go_to_home": "Ir a la página de inicio",
+
+  "label_scan_checker": "Corrector de Etiquetas",
+  "products": "Productos",
+  "scan": "Escanear",
+  "history": "Historia",
+  "card_products": "Ver/Actualizar productos.",
+  "card_scan": "Inicie su escaneo.",
+  "card_history": "Acceda al historial de escaneo.",
+
+  "part_name": "Nombre de la pieza",
+  "customer_number": "Número de cliente",
+  "part_number": "Número de pieza",
+  "customer": "Cliente",
+  "action": "Acción",
+  "search": "Buscar número de cliente...",
+  "date": "Fecha"
+}
