@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Pagination from "./common/pagination";
 import { getProducts } from "../services/fakeProductService";
+import { paginate } from "../utils/paginate";
 import "../styles/products.css";
 
 class Products extends Component {
@@ -15,10 +16,13 @@ class Products extends Component {
   };
 
   render() {
-    const { length: count } = this.state.products;
-    const { pageSize, currentPage } = this.state;
+    const { products: allProducts, pageSize, currentPage } = this.state;
+    const { length: count } = allProducts;
 
     if (count === 0) return <p>There are no products in the database.</p>;
+
+    // the algorithm used to paginate the data might be reused in the future, so we put that in another folder 'utils'
+    const products = paginate(allProducts, currentPage, pageSize);
 
     return (
       <div className="p-4">
@@ -32,7 +36,7 @@ class Products extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.products.map((product) => (
+            {products.map((product) => (
               <tr>
                 <td>{product.name}</td>
                 <td>{product.partNumber}</td>
