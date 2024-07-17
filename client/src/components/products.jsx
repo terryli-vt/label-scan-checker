@@ -34,6 +34,7 @@ class Products extends Component {
 
     if (count === 0) return <p>There are no products in the database.</p>;
 
+    // Sort
     const sorted = _.orderBy(
       allProducts,
       [sortColumn.path],

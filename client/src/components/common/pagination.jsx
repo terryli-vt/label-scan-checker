@@ -9,7 +9,7 @@ const Pagination = (props) => {
   const pages = _.range(1, pagesCount + 1); // create an array from 1 to pageCount. If pageCount = 3, pages = [1, 2, 3]
   return (
     <nav>
-      <ul className="pagination" style={{ cursor: "pointer" }}>
+      <ul className="pagination clickable">
         {/* bootstrap pagniation */}
         {pages.map((page) => (
           <li
