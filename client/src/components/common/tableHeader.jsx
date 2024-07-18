@@ -10,10 +10,10 @@ class TableHeader extends Component {
       sortColumn.path = path;
       sortColumn.order = "asc";
     }
-    this.props.onSort(sortColumn);
+    this.props.onSort(sortColumn); // event handler to change sortColumn object
   };
 
-  // up or down arrow, depending on the sort order
+  // showing up or down arrow icon, depending on the sort order
   renderSortIcon = (column) => {
     const { sortColumn } = this.props;
     if (column.path !== sortColumn.path) return null;

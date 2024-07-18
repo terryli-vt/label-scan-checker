@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Pagination from "./common/pagination";
+import EntrySelector from "./common/entrySelector";
 import ProductsTable from "./productsTable";
 import { getProducts } from "../services/fakeProductService";
 import { paginate } from "../utils/paginate";
@@ -10,7 +11,7 @@ class Products extends Component {
   state = {
     products: getProducts(),
     currentPage: 1,
-    pageSize: 3,
+    pageSize: 10,
     sortColumn: { path: "title", order: "asc" }, // this object tells how do we sort the page
   };
 
@@ -21,6 +22,10 @@ class Products extends Component {
   // path = target property name, like name or partNumber
   handleSort = (sortColumn) => {
     this.setState({ sortColumn });
+  };
+
+  handleEntriesChange = (selectedEntry) => {
+    this.setState({ pageSize: selectedEntry });
   };
 
   render() {
@@ -57,6 +62,13 @@ class Products extends Component {
 
     return (
       <div className="p-4">
+        <div className="d-flex flex-row">
+          <EntrySelector
+            pageSize={pageSize}
+            onEntriesChange={this.handleEntriesChange}
+            onPageChange={this.handlePageChange}
+          />
+        </div>
         <ProductsTable
           products={products}
           count={count}
