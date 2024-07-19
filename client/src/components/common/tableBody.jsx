@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class TableBody extends Component {
   renderCell = (item, column) => {
-    if (column.content) return column.content; // if that column has content property (like a button)
+    if (column.content) return column.content(item); // if that column has content property (like a button)
     return item[column.path]; // render the data of that cell
   };
 

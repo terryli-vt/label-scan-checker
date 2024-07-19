@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Pagination from "./common/pagination";
 import EntrySelector from "./common/entrySelector";
+import SearchBox from "./common/searchBox";
 import ProductsTable from "./productsTable";
 import { getProducts } from "../services/fakeProductService";
 import { paginate } from "../utils/paginate";
@@ -12,11 +13,16 @@ class Products extends Component {
     products: getProducts(),
     currentPage: 1,
     pageSize: 10,
+    searchQuery: "",
     sortColumn: { path: "title", order: "asc" }, // this object tells how do we sort the page
   };
 
   handlePageChange = (page) => {
     this.setState({ currentPage: page });
+  };
+
+  handleSearch = (query) => {
+    this.setState({ searchQuery: query, currentPage: 1 });
   };
 
   // path = target property name, like name or partNumber
@@ -33,18 +39,24 @@ class Products extends Component {
       products: allProducts,
       pageSize,
       currentPage,
+      searchQuery,
       sortColumn,
     } = this.state;
-    const { length: count } = allProducts;
+    let { length: count } = allProducts;
 
-    if (count === 0) return <p>There are no products in the database.</p>;
+    if (count === 0) return <p>There are no products found.</p>;
+
+    // Filter based on Search
+    let filtered = allProducts;
+    if (searchQuery) {
+      filtered = allProducts.filter((product) =>
+        product.partNumber.toLowerCase().startsWith(searchQuery.toLowerCase())
+      );
+      count = filtered.length;
+    }
 
     // Sort
-    const sorted = _.orderBy(
-      allProducts,
-      [sortColumn.path],
-      [sortColumn.order]
-    );
+    const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
 
     // Without using lodash
     /* const sorted = allProducts.sort((a, b) => {
@@ -68,6 +80,7 @@ class Products extends Component {
             onEntriesChange={this.handleEntriesChange}
             onPageChange={this.handlePageChange}
           />
+          <SearchBox value={searchQuery} onChange={this.handleSearch} />
         </div>
         <ProductsTable
           products={products}

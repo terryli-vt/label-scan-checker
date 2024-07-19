@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withTranslation } from "react-i18next";
 
 class TableHeader extends Component {
   raiseSort = (path) => {
@@ -22,10 +23,12 @@ class TableHeader extends Component {
   };
 
   render() {
+    const { columns, t } = this.props;
+
     return (
       <thead>
         <tr>
-          {this.props.columns.map((column) =>
+          {columns.map((column) =>
             column.sortable ? (
               // for the key, if the column has a path, used that. Otherwise use column's key. This is for handling unique key for each child
               <th
@@ -33,10 +36,10 @@ class TableHeader extends Component {
                 key={column.path || column.key}
                 onClick={() => this.raiseSort(column.path)}
               >
-                {column.label} {this.renderSortIcon(column)}
+                {t(column.label)} {this.renderSortIcon(column)}
               </th>
             ) : (
-              <th key={column.path || column.key}>{column.label}</th>
+              <th key={column.path || column.key}>{t(column.label)}</th>
             )
           )}
         </tr>
@@ -45,4 +48,4 @@ class TableHeader extends Component {
   }
 }
 
-export default TableHeader;
+export default withTranslation()(TableHeader);

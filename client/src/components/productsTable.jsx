@@ -1,15 +1,23 @@
 import React, { Component } from "react";
 import Table from "./common/table";
+import { withTranslation } from "react-i18next";
 class ProductsTable extends Component {
   // the columns here don't have to be in part of state
   // since it's not going to change throughout the lifecycle of this component
   columns = [
-    { path: "name", label: "Part Name", sortable: true },
-    { path: "partNumber", label: "Part Number", sortable: true },
-    { path: "customer", label: "Customer", sortable: true },
+    { path: "name", label: "part_name", sortable: true },
+    { path: "partNumber", label: "part_number", sortable: true },
+    { path: "customer", label: "customer", sortable: true },
     {
       key: "scan",
-      content: <button className="btn btn-success btn-sm">Scan</button>,
+      label: "action",
+      content: (product) => {
+        return (
+          <button className="btn btn-success btn-sm">
+            {this.props.t("scan")}
+          </button>
+        );
+      },
       sortable: false,
     }, // scan button, the key is for handling error of "each child in an array should have a unique key prop"
   ];
@@ -28,4 +36,8 @@ class ProductsTable extends Component {
   }
 }
 
-export default ProductsTable;
+/* 
+withTranslation is a higher-order component (HOC) provided by the react-i18next library.
+It wraps a component and provides it with translation-related props and functionality, enabling the component to use translation features.
+*/
+export default withTranslation()(ProductsTable);
