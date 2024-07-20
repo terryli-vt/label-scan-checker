@@ -39,5 +39,6 @@ class ProductsTable extends Component {
 /* 
 withTranslation is a higher-order component (HOC) provided by the react-i18next library.
 It wraps a component and provides it with translation-related props and functionality, enabling the component to use translation features.
+The components wrapped by withTranslation, like productsTable, receive the t function as a prop, which it uses to access translation strings.
 */
 export default withTranslation()(ProductsTable);

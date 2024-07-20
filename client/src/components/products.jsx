@@ -5,8 +5,9 @@ import SearchBox from "./common/searchBox";
 import ProductsTable from "./productsTable";
 import { getProducts } from "../services/fakeProductService";
 import { paginate } from "../utils/paginate";
-import "../styles/products.css";
+import { Link } from "react-router-dom";
 import _ from "lodash"; // a convention to use lodash library
+import "../styles/products.css";
 
 class Products extends Component {
   state = {
@@ -73,27 +74,36 @@ class Products extends Component {
     const products = paginate(sorted, currentPage, pageSize);
 
     return (
-      <div className="p-4">
-        <div className="d-flex flex-row">
+      <div>
+        <div className="flex-row-container p-2">
           <EntrySelector
             pageSize={pageSize}
             onEntriesChange={this.handleEntriesChange}
             onPageChange={this.handlePageChange}
           />
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
+          <Link
+            className="btn btn-primary m-3"
+            style={{ whiteSpace: "nowrap" }}
+            to="/product-form"
+          >
+            Add Product
+          </Link>
         </div>
-        <ProductsTable
-          products={products}
-          count={count}
-          sortColumn={sortColumn}
-          onSort={this.handleSort}
-        />
-        <Pagination
-          totalRecordCount={count}
-          pageSize={pageSize}
-          currentPage={currentPage}
-          onPageChange={this.handlePageChange}
-        />
+        <div className="p-3">
+          <ProductsTable
+            products={products}
+            count={count}
+            sortColumn={sortColumn}
+            onSort={this.handleSort}
+          />
+          <Pagination
+            totalRecordCount={count}
+            pageSize={pageSize}
+            currentPage={currentPage}
+            onPageChange={this.handlePageChange}
+          />
+        </div>
       </div>
     );
   }
