@@ -3,7 +3,8 @@ import Pagination from "./common/pagination";
 import EntrySelector from "./common/entrySelector";
 import SearchBox from "./common/searchBox";
 import ProductsTable from "./productsTable";
-import { getProducts } from "../services/fakeProductService";
+// import { getProducts } from "../services/fakeProductService";
+import { getProducts } from "../services/productService";
 import { paginate } from "../utils/paginate";
 import { Link } from "react-router-dom";
 import _ from "lodash"; // a convention to use lodash library
@@ -11,12 +12,25 @@ import "../styles/products.css";
 
 class Products extends Component {
   state = {
-    products: getProducts(),
+    products: [],
     currentPage: 1,
     pageSize: 10,
     searchQuery: "",
     sortColumn: { path: "title", order: "asc" }, // this object tells how do we sort the page
   };
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  async fetchData() {
+    try {
+      const products = await getProducts();
+      this.setState({ products });
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  }
 
   handlePageChange = (page) => {
     this.setState({ currentPage: page });

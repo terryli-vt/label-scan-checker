@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 // setting up our Express application and using a separate router for handling product-related routes.
 const products = require("./routes/products");
@@ -9,6 +10,9 @@ require("dotenv").config();
 
 // Initializes a new instance of an Express application
 const app = express();
+
+// Enable CORS for all routes
+app.use(cors());
 
 // Middleware to parse JSON
 // Middleware in Express.js is like a series of steps or functions that run between receiving a request from a client (like a web browser) and sending back a response.

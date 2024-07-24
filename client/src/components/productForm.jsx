@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "./common/form";
 import { Link } from "react-router-dom";
+import { postProduct } from "../services/productService";
 var Joi = require("joi-browser");
 
 class ProductForm extends Form {
@@ -26,9 +27,8 @@ class ProductForm extends Form {
   async doSubmit() {
     // call the server, save the changes, and redirect the user to another page
     try {
-      // let { data } = this.state;
-      // await postProduct(data);
-      // const response = await postProduct(data);
+      let { data } = this.state;
+      const response = await postProduct(data);
       // console.log("Product form submitted!");
       // console.log("Data returned from post:", response);
       window.location = "/products";

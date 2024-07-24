@@ -20,10 +20,13 @@ router.post("/", async (req, res) => {
   // If you send a POST request to /products with JSON data, the express.json() middleware will parse it, and req.body will contain the parsed JavaScript object.
   const { name, partNumber, customer } = req.body;
 
+  // new instance of the 'Product' model
   let product = new Product({ name, partNumber, customer });
+
   // Insert the product in the MongoDB database
   product = await product.save();
 
+  // After saving, the variable product now contains the product document as it was saved in the database, including any generated fields like _id.
   res.send(product);
 });
 
