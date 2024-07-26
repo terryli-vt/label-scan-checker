@@ -18,9 +18,13 @@ const Pagination = (props) => {
               page === currentPage ? "page-item active" : "page-item"
             } /* highlight the page selected */
           >
-            <a className="page-link" onClick={() => onPageChange(page)}>
+            <button
+              className="page-link"
+              style={{ boxShadow: "none" }}
+              onClick={() => onPageChange(page)}
+            >
               {page}
-            </a>
+            </button>
           </li>
         ))}
       </ul>

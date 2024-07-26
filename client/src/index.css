@@ -32,3 +32,9 @@ code {
   width: 50%;
   height: 50%;
 }
+
+.button-group {
+  margin-top: 3em;
+  display: flex;
+  flex-direction: column;
+}

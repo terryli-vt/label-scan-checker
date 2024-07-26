@@ -28,8 +28,9 @@ class ProductForm extends Form {
     // call the server, save the changes, and redirect the user to another page
     try {
       let { data } = this.state;
-      const response = await postProduct(data);
+      await postProduct(data);
       // console.log("Product form submitted!");
+      // const response = await postProduct(data);
       // console.log("Data returned from post:", response);
       window.location = "/products";
     } catch (ex) {

@@ -3,6 +3,7 @@ import NavBar from "./components/navbar";
 import LoginForm from "./components/loginForm";
 import ProductForm from "./components/productForm";
 import Products from "./components/products";
+import Scan from "./components/scan";
 import History from "./components/history";
 import NotFound from "./components/notFound";
 import "./App.css";
@@ -20,6 +21,7 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/product-form" element={<ProductForm />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/scan" element={<Scan />} />
           <Route path="/history" element={<History />} />
           <Route path="/not-found" element={<NotFound />} />
           <Route path="/" element={<Home />} />

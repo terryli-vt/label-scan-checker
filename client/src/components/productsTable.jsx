@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Table from "./common/table";
+import { Link } from "react-router-dom";
 import { withTranslation } from "react-i18next";
 class ProductsTable extends Component {
   // the columns here don't have to be in part of state
@@ -13,9 +14,15 @@ class ProductsTable extends Component {
       label: "action",
       content: (product) => {
         return (
-          <button className="btn btn-success btn-sm">
-            {this.props.t("scan")}
-          </button>
+          <React.Fragment>
+            <Link
+              className="btn btn-success btn-sm me-2"
+              to="/scan"
+              state={product}
+            >
+              {this.props.t("scan")}
+            </Link>
+          </React.Fragment>
         );
       },
       sortable: false,
