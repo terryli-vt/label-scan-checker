@@ -5,6 +5,7 @@ import ProductForm from "./components/productForm";
 import Products from "./components/products";
 import Scan from "./components/scan";
 import History from "./components/history";
+import ScanReport from "./components/scanReport";
 import NotFound from "./components/notFound";
 import "./App.css";
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/product-form" element={<ProductForm />} />
           <Route path="/products" element={<Products />} />
           <Route path="/scan" element={<Scan />} />
+          <Route path="/scan-report" element={<ScanReport />} />
           <Route path="/history" element={<History />} />
           <Route path="/not-found" element={<NotFound />} />
           <Route path="/" element={<Home />} />

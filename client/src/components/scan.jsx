@@ -14,6 +14,7 @@ function Scan() {
   const product = location.state || {};
   const targetStr = product.partNumber;
 
+  // store a reference to the list + input DOM element, so we can interact with them later
   const listRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -28,7 +29,9 @@ function Scan() {
     window.addEventListener("beforeunload", handleBeforeUnload);
 
     // The return function inside useEffect serves as a cleanup mechanism for the side effects.
+    // This is equivalent of componentWillUnmount lifecycle hook
     // Clean up the event listener when the component unmounts to avoid memory leaks.
+    // Memory leak: event listeners continue to exist and reference functions or variables even after the component is unmounted.
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
@@ -42,20 +45,21 @@ function Scan() {
   ]);
 
   const [inputValue, setInputValue] = useState("");
-  const [inputStatus, setInputStatus] = useState("");
+  const [inputStatus, setInputStatus] = useState(""); // for input field's style (green for match or red for unmatch)
   const [listItems, setListItems] = useState([]);
   const [clear, setClear] = useState(false);
   const [lock, setLock] = useState(false); // lock scan if a mismatch has found
-
-  const handleInputChange = (event) => {
-    if (lock) return;
-    setInputValue(event.target.value);
-  };
 
   // play a beep sound when mismatch
   const playSound = () => {
     const audio = new Audio(beep);
     audio.play();
+  };
+
+  // make the input field a controlled element
+  const handleInputChange = (event) => {
+    if (lock) return;
+    setInputValue(event.target.value);
   };
 
   const handleInputKeyPress = (event) => {
@@ -67,21 +71,20 @@ function Scan() {
     }
 
     if (event.key === "Enter") {
-      const newItem = inputValue.trim();
+      const newItem = inputValue.trim(); // removes whitespace from both ends of this string
       if (newItem !== "") {
         setListItems((prevItems) => [...prevItems, newItem]);
 
         if (newItem === targetStr) {
           setInputStatus("is-valid");
-          // match + 1
-          handleIncrement(counters.filter((c) => c.id === 1)[0]);
+          handleIncrement(counters.find((c) => c.label === "match")); // match + 1
         } else {
           setInputStatus("is-invalid");
           playSound();
           setLock(true);
         }
 
-        setClear(true);
+        setClear(true); // I want the scanned result stays in the input field, until next key is pressed
       }
     }
   };
@@ -94,28 +97,29 @@ function Scan() {
   useEffect(() => {
     // Scroll to the bottom when a new list item is added
     if (listRef.current) {
+      // scrollTop = vertical scroll position
+      // scrollHeight = total height of the element's content
       listRef.current.scrollTop = listRef.current.scrollHeight;
     }
   }, [listItems]);
 
   const handleDeleteItem = (index, updateCounter) => {
+    // if we need to update the counter
     if (updateCounter) {
       // handle counter
       if (listItems[index] === targetStr) {
-        // match - 1
-        handleDecrement(counters.filter((c) => c.id === 1)[0]);
+        handleDecrement(counters.find((c) => c.label === "match")); // match - 1
       } else {
-        // unmatch - 1
-        handleDecrement(counters.filter((c) => c.id === 2)[0]);
+        handleDecrement(counters.find((c) => c.label === "unmatch")); // unmatch - 1
       }
     }
 
-    // clear input
+    // clear input field
     setInputValue("");
     setInputStatus("");
 
-    // delete from list
-    setListItems((prevItems) => prevItems.filter((item, i) => i !== index));
+    // delete the item from list
+    setListItems((prevItems) => prevItems.filter((_, i) => i !== index));
   };
 
   const handleIncrement = (counter) => {
@@ -136,7 +140,7 @@ function Scan() {
 
   const handleUnmatch = () => {
     // unmatch + 1
-    handleIncrement(counters.filter((c) => c.id === 2)[0]);
+    handleIncrement(counters.find((c) => c.label === "unmatch"));
     setLock(false);
   };
 
@@ -203,7 +207,11 @@ function Scan() {
               <strong>{index + 1}.</strong> {item}
               <button
                 className="btn btn-danger btn-lg"
-                style={{ visibility: "hidden" }}
+                style={
+                  item === targetStr
+                    ? { visibility: "visible" }
+                    : { visibility: "hidden" }
+                }
                 onClick={() => handleDeleteItem(index, true)}
               >
                 Delete
@@ -227,7 +235,7 @@ function Scan() {
           <button
             className="btn btn-lg btn-warning m-3"
             onClick={() =>
-              handleIncrement(counters.filter((c) => c.id === 3)[0])
+              handleIncrement(counters.find((c) => c.label === "unscannable"))
             }
             style={lock ? displayNone : displayBlock}
           >
