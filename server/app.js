@@ -4,6 +4,7 @@ const cors = require("cors");
 
 // setting up our Express application and using a separate router for handling product-related routes.
 const products = require("./routes/products");
+const histories = require("./routes/histories");
 
 // Load environment variables from .env file
 require("dotenv").config();
@@ -29,6 +30,8 @@ mongoose
 
 // Use the products route
 app.use("/products", products);
+
+app.use("/histories", histories);
 
 app.get("/", (req, res) => {
   res.send({ message: "Hello from Express!" });

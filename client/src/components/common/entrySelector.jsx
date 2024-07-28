@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-
+import { withTranslation } from "react-i18next";
 class EntrySelector extends Component {
   state = { entryOptions: [1, 2, 3], isOpen: false };
 
   toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
 
   render() {
-    const { pageSize, onEntriesChange, onPageChange } = this.props;
+    const { pageSize, onEntriesChange, onPageChange, t } = this.props;
     const { entryOptions, isOpen } = this.state;
 
     const menuClass = `dropdown-menu${isOpen ? " show" : ""}`;
@@ -21,7 +21,7 @@ class EntrySelector extends Component {
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Showing {pageSize} entries
+          {t("showing")} {pageSize} {t("entries")}
         </button>
         <div className={menuClass} aria-labelledby="showEntriesDropdown">
           {entryOptions.map((option) => (
@@ -43,4 +43,4 @@ class EntrySelector extends Component {
   }
 }
 
-export default EntrySelector;
+export default withTranslation()(EntrySelector);

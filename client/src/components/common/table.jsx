@@ -1,8 +1,10 @@
 import React from "react";
 import TableBody from "./tableBody";
 import TableHeader from "./tableHeader";
+import { useTranslation } from "react-i18next";
 
 const Table = ({ columns, sortColumn, onSort, data, count }) => {
+  const { t } = useTranslation();
   // const { columns, sortColumn, onSort, data, count } = props;
   return (
     <div>
@@ -15,7 +17,9 @@ const Table = ({ columns, sortColumn, onSort, data, count }) => {
         />
         <TableBody data={data} columns={columns} />
       </table>
-      <p>We found {count} records.</p>
+      <p>
+        {t("we_found")} {count} {t("records")}.
+      </p>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 {
   "result": "Scanned Result",
   "target": "Target",
-  "matching_index": "Matching Index",
   "match": "Match",
   "unmatch": "Unmatch",
   "unscannable": "Unscannable",
@@ -26,6 +25,16 @@
   "part_number": "Part Number",
   "customer": "Customer",
   "action": "Action",
-  "search": "Search Customer Number...",
-  "date": "Date"
+  "search": "Search Part Number...",
+  "date": "Date",
+
+  "no_product": "There is no product found.",
+  "showing": "Showing",
+  "entries": "entries",
+  "add_product": "Add Product",
+  "we_found": "We found",
+  "records": "records",
+  "cancel": "Cancel",
+  "add": "Add",
+  "delete": "Delete"
 }

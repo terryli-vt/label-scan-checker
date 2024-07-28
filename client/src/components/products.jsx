@@ -3,11 +3,11 @@ import Pagination from "./common/pagination";
 import EntrySelector from "./common/entrySelector";
 import SearchBox from "./common/searchBox";
 import ProductsTable from "./productsTable";
-// import { getProducts } from "../services/fakeProductService";
 import { getProducts } from "../services/productService";
 import { paginate } from "../utils/paginate";
 import { Link } from "react-router-dom";
 import _ from "lodash"; // a convention to use lodash library
+import { withTranslation } from "react-i18next";
 import "../styles/products.css";
 
 class Products extends Component {
@@ -57,9 +57,11 @@ class Products extends Component {
       searchQuery,
       sortColumn,
     } = this.state;
+
+    const { t } = this.props;
     let { length: count } = allProducts;
 
-    if (count === 0) return <p>There are no products found.</p>;
+    if (count === 0) return <p>{t("no_product")}</p>;
 
     // Filter based on Search
     let filtered = allProducts;
@@ -101,7 +103,7 @@ class Products extends Component {
             style={{ whiteSpace: "nowrap" }}
             to="/product-form"
           >
-            Add Product
+            {t("add_product")}
           </Link>
         </div>
         <div className="p-3">
@@ -123,4 +125,4 @@ class Products extends Component {
   }
 }
 
-export default Products;
+export default withTranslation()(Products);

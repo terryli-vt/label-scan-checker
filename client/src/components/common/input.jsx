@@ -1,9 +1,12 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
+
 // use rest operator to get other properties in props
 const Input = ({ name, label, error, ...rest }) => {
+  const { t } = useTranslation();
   return (
     <div className="form-group my-4">
-      <label htmlFor={name}>{label}</label>
+      <label htmlFor={name}>{t(label)}</label>
       <input
         /* 
         The rest operator here is equivalent to:

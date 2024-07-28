@@ -1,7 +1,6 @@
 {
   "result": "Resultado escaneado",
   "target": "Objetivo",
-  "matching_index": "índice",
   "match": "Emparejado",
   "unmatch": "Desemparejar",
   "unscannable": "No se puede escanear",
@@ -26,6 +25,16 @@
   "part_number": "Número de pieza",
   "customer": "Cliente",
   "action": "Acción",
-  "search": "Buscar número de cliente...",
-  "date": "Fecha"
+  "search": "Buscar número de pieza...",
+  "date": "Fecha",
+
+  "no_product": "No se encontró ningún producto.",
+  "showing": "Mostrando",
+  "entries": "entradas",
+  "add_product": "Agregar Producto",
+  "we_found": "Encontramos",
+  "records": "registros",
+  "cancel": "Cancelar",
+  "add": "Agregar",
+  "delete": "Borrar"
 }

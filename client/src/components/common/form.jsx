@@ -1,7 +1,6 @@
 import { Component } from "react";
 import Input from "./input";
 var Joi = require("joi-browser");
-
 class Form extends Component {
   state = {
     data: {},
@@ -70,15 +69,6 @@ class Form extends Component {
     data[input.name] = input.value;
     this.setState({ data, errors });
   };
-
-  renderButton(label, style) {
-    const className = "m-2 btn btn-" + style;
-    return (
-      <button disabled={this.validate()} className={className}>
-        {label}
-      </button>
-    );
-  }
 
   // the default value is text
   // type is for password field

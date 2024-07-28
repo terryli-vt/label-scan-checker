@@ -4,7 +4,7 @@ class Counter extends Component {
     const { onIncrement, onDecrement, counter } = this.props;
 
     return (
-      <h1>
+      <h1 style={{ whiteSpace: "nowrap" }}>
         <button
           onClick={() => onIncrement(counter)}
           className="btn btn-secondary btn-lg m-2"

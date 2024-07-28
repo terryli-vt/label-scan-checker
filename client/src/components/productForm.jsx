@@ -2,6 +2,7 @@ import React from "react";
 import Form from "./common/form";
 import { Link } from "react-router-dom";
 import { postProduct } from "../services/productService";
+import { withTranslation } from "react-i18next";
 var Joi = require("joi-browser");
 
 class ProductForm extends Form {
@@ -39,22 +40,25 @@ class ProductForm extends Form {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <div className="center-page-container">
         <div className="half-screen">
-          <h1>Add Product</h1>
+          <h1>{t("add_product")}</h1>
           <form onSubmit={this.handleSubmit}>
-            {this.renderInput("name", "Part Name")}
-            {this.renderInput("partNumber", "Part Number")}
-            {this.renderInput("customer", "Customer")}
+            {this.renderInput("name", "part_name")}
+            {this.renderInput("partNumber", "part_number")}
+            {this.renderInput("customer", "customer")}
             <Link className="btn btn-link m-2" to="/products">
-              Cancel
+              {t("cancel")}
             </Link>
-            {this.renderButton("Add", "primary")}
+            <button disabled={this.validate()} className="m-2 btn btn-primary">
+              {t("add")}
+            </button>
           </form>
         </div>
       </div>
     );
   }
 }
-export default ProductForm;
+export default withTranslation()(ProductForm);

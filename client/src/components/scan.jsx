@@ -214,7 +214,7 @@ function Scan() {
                 }
                 onClick={() => handleDeleteItem(index, true)}
               >
-                Delete
+                {t("delete")}
               </button>
             </li>
           ))}
