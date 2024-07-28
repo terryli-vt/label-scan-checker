@@ -1,5 +1,5 @@
-// const API_URL = "https://scan-system-46b3b71881a3.herokuapp.com/api"; // Replace with your API URL
-const API_URL = "http://localhost:3500";
+// const API_URL = "http://localhost:3500";
+const API_URL = "https://label-scan-checker.onrender.com";
 
 // Function to fetch history scan records
 export async function getHistories() {
